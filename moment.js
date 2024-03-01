@@ -28,8 +28,3 @@ const timeInAsia = timezone.clone().tz("Asia/Seoul")
 console.log(timezone.format("HH:mm z"), timeInAsia.format("HH:mm z"))
 
 console.log(timezone.utc().format("HH:mm"))
-
-
-// moment.locale("sv")
-
-console.log(moment().format("YYYY MMMM DD"))
