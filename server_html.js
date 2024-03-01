@@ -7,9 +7,19 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { "Content-Type": "text/html" });
     return fs.createReadStream("dist/index.html", "utf-8").pipe(res);
   }
-  if (req.url === "/contact" || req.url === "/contact.html") {
+  else if (req.url === "/contact" || req.url === "/contact.html") {
     res.writeHead(200, { "Content-Type": "text/html" });
     return fs.createReadStream("dist/contact.html", "utf-8").pipe(res);
+  }
+  else if (req.url.includes(".css")) {
+    console.log("Looking for stylesheet ", req.url);
+    res.writeHead(200, { "Content-Type": "text/css" });
+    return fs.createReadStream(req.url.slice(1)).pipe(res)
+  }
+  else if (req.url.endsWith(".js")) {
+    console.log("Looking for Script file", req.url)
+    res.writeHead(200, { "Content-Type": "application/javascript" });
+    return fs.createReadStream(req.url.slice(1)).pipe(res);
   }
 
   res.writeHead(404, { "Content-Type": "text/html" });
