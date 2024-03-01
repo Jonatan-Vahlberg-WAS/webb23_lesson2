@@ -21,15 +21,12 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { "Content-Type": "application/javascript" });
     return fs.createReadStream(req.url.slice(1)).pipe(res);
   }
-
   else if (req.url.includes("/images")) {
     const extensionIndex = req.url.lastIndexOf(".")
     const extension = req.url.slice(extensionIndex + 1)
     console.log(extension)
     res.writeHead(200, { "Content-Type": `image/${extension}` })
     return fs.createReadStream(req.url.slice(1)).pipe(res);
-
-    
   }
 
   res.writeHead(404, { "Content-Type": "text/html" });
